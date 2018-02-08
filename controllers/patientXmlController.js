@@ -1,6 +1,7 @@
 'user strict';
 
 var Patient = require("../models/patient");
+var resolvePath = require("../lib/resolvePath");
 
 const configPairing = {
     "first_name": "body.tsadtout.patientdemographics.firstname", 
@@ -33,8 +34,6 @@ function getPatient(req, res) {
     patient.dateOfBirth = dob;
     res.send(JSON.stringify(patient));
 }
-
-const resolvePath = (object, path, defaultValue)=> path.split('.').reduce((o,p) => o ? o[p] : defaultValue, object);
 
 module.exports = {
     getPatient: getPatient

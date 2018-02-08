@@ -1,6 +1,7 @@
 'user strict';
 
 var Patient = require("../models/patient");
+var resolvePath = require("../lib/resolvePath");
 
 const configPairing = {
     "first_name": "first_name",
@@ -9,15 +10,20 @@ const configPairing = {
     "date_of_birth": "date_of_birth"
 }
 
+//const resolvePath = (object, path, defaultValue)=> path.split('.').reduce((o,p) => o ? o[p] : defaultValue, object);
 
 function getPatient(req, res) {
     let patient = new Patient();
     let test = "";
     for(let prop in configPairing) {
-        if(!req.body[configPairing[prop]]) {
-            res.send({ error: "Resource " + prop + " not found"});
+        val = resolvePath(req.body, configPairing[prop], null);
+        if(!val) {
+            res.send({ error: "Resource " + prop + " for "+ configPairing[prop] + " not found!"});
         }
-        patient[prop] = req.body[configPairing[prop]];
+
+        if(patient.hasOwnProperty(prop)) {
+            patient[prop] = val;
+        }
     }
 
     //Check date format
