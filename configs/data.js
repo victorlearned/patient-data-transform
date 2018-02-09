@@ -6,10 +6,10 @@ const configJsonPairing = {
 };
 
 const configXmlPairing = {
-    "first_name": "body.tsadtout.patientdemographics.firstname", 
-    "last_name" : "body.tsadtout.patientdemographics.lastname",
-    "external_id": "body.tsadtout.patientdemographics.patientuid",
-    "date_of_birth": "body.tsadtout.patientdemographics.dob"
+    "first_name": "tsadtout.patientdemographics.firstname", 
+    "last_name" : "tsadtout.patientdemographics.lastname",
+    "external_id": "tsadtout.patientdemographics.patientuid",
+    "date_of_birth": "tsadtout.patientdemographics.dob"
 };
 
 module.exports.configJsonPairing = configJsonPairing;
